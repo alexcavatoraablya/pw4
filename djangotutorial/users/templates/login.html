@@ -1,5 +1,52 @@
-{% extends "Layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+  <head>
+    <meta charset="UTF-8">
+    {% block title %}
     <h1 class="text-center">Вхід на сайт</h1>
-{% endblock %}
+{% endblock title %}
+  </head>
+  <body>
+  <html>
+    {% block content %}
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg rounded-xl w-full max-w-md">
+            <h3 class="text-2xl font-bold text-center text-gray-800">Вхід у систему</h3>
+
+            <form action="{% url 'login' %}" method="POST" class="mt-4">
+
+                {% extends "Layout.html" %}
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="p-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        Неправильне ім'я користувача або пароль.
+                    </div>
+                {% endif %}
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Ім'я користувача</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700">Пароль</label>
+                    {{ form.password }}
+                </div>
+
+                <div class="flex items-baseline justify-between mt-6">
+                    <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-200">Увійти</button>
+                    <a href="#" class="text-sm text-blue-600 hover:underline">Забули пароль?</a>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center border-t pt-4">
+                <span class="text-sm text-gray-600">Не маєте акаунту?
+                    <a href="{% url 'register' %}" class="text-blue-600 hover:underline font-medium">Зареєструватися</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</html>
