@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from .forms import CustomUserLoginForm, CustomUserCreationForm
@@ -17,6 +17,8 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 return redirect("homepage")
+        else:
+            print('form errors', form.errors)
     else:
         form = CustomUserLoginForm()
     return render(request, "login.html", {'form': form})
@@ -46,3 +48,7 @@ def user_register(request):
         form = CustomUserCreationForm()
 
     return render(request, "register.html", {"form": form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('homepage')

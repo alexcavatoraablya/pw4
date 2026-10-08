@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 
-from .models import CustomUser
+from users.models import CustomUser
 
 
 class CustomUserLoginForm(AuthenticationForm):
@@ -13,6 +13,7 @@ class CustomUserLoginForm(AuthenticationForm):
         label="Пароль",
         widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
+
 
 class CustomUserCreationForm(UserCreationForm):
     # username = forms.CharField(
