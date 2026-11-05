@@ -42,11 +42,6 @@ class Command(BaseCommand):
                     last_name=last_name
                 )
 
-                # Опціонально: робимо деяких користувачів персоналом/суперюзерами
-                # if random.choice([True, False, False, False]):  # 25% шанс
-                #     user.is_staff = True
-                #     user.save()
-
                 created_count += 1
 
         self.stdout.write(self.style.SUCCESS(f'Успішно створено {created_count} нових користувачів!'))
