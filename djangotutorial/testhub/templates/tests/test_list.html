@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список тестів</title>
+</head>
+<body>
+    <h1>Доступні тести для проходження</h1>
+
+    {% if tests %}
+        <ul>
+            {% for test in tests %}
+                <li>
+                    <strong>{{ test.title }}</strong> — {{ test.created_at|date:"d.m.Y" }}
+                    <p>{{ test.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Наразі тестів немає в базі даних.</p>
+    {% endif %}
+</body>
+</html>

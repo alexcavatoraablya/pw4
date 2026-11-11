@@ -20,11 +20,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import views
+from testhub.views import test_list_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('categories/', include('categories.urls')),
+    path('tests/', test_list_view, name='test_list'),
     path('', views.homepage, name='homepage'),
 ]
 
