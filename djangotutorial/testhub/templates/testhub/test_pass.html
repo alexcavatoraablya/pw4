@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Проходження тесту: {{ test.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ test.title }}</h1>
+        <p>Учасник: <strong>{{ user_data.name }}</strong> (Група: {{ user_data.group }})</p>
+        <hr>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for question in questions %}
+            <div style="margin-bottom: 20px;">
+                <p><strong>{{ forloop.counter }}. {{ question.text }}</strong></p>
+
+                {% for choice in question.choices.all %}
+                    <div>
+                        <label>
+                            <input type="radio"
+                                   name="question_{{ question.id }}"
+                                   value="{{ choice.id }}"
+                                   required>
+                            {{ choice.text }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Завершити тест</button>
+    </form>
+</body>
+</html>
